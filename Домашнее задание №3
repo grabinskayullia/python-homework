@@ -1,0 +1,111 @@
+# Задание №1
+a = int(input("Введите первое число: "))
+b = int(input("Введите второе число: "))
+
+def mysum(arg_1, arg_2):
+    if arg_1 == 0 or arg_2 == 0:
+        print("Делить на ноль нельзя")
+    else:
+        res = arg_1 / arg_2
+    return res
+
+print(mysum(a, b))
+
+
+# Задание №2
+name_arg = input("Введите свое имя: ")
+surname_arg = input("Введите свою фамилию: ")
+birth_arg = int(input("Введите свой год рождения: "))
+city_arg = input("Введите свой город проживания: ")
+email_arg = input("Введите свой email: ")
+tell_arg = int(input("Введите свой номер телефона: "))
+
+def res_func(arg_1, arg_2, arg_3, arg_4, arg_5, arg_6):
+    return f"Имя: {arg_1}, Фамилия: {arg_2}, Год рождения: {arg_3}, Город проживания: {arg_4}, Ваш email: {arg_5}, Ваш номер телефона: {arg_6}"
+
+all_info = res_func(arg_1 = name_arg, arg_2 = surname_arg, arg_3 = birth_arg, arg_4 = city_arg, arg_5 = email_arg, arg_6 = tell_arg)
+print(all_info)
+
+
+
+# Задание №3
+first_num = int(input("Введите первое число: "))
+second_num = int(input("Введите второе число: "))
+third_num = int(input("Введите третье число: "))
+
+def my_func(var_1, var_2, var_3):
+    if var_1 >= var_3 and var_2 >= var_3:
+        return var_1 + var_2
+    elif var_1 > var_2 and var_2 < var_3:
+        return var_1 + var_3
+    else:
+        return var_2 + var_3
+
+print(my_func(first_num, second_num, third_num))
+
+
+
+# Задание №4
+first_num = int(input("Введите действительное положительное число: "))
+second_num = int(input("Введите целое отрицательное число: "))
+
+my_func = lambda x, y: x ** y
+
+print(my_func(first_num, second_num))
+
+
+# Задание №5
+def my_sum ():
+    sum_res = 0
+    ex = False
+    while ex == False:
+        number = input('Введите числа - ').split()
+
+        res = 0
+        for el in range(len(number)):
+            if number[el] == 'q' or number[el] == 'Q':
+                ex = True
+                break
+            else:
+                res = res + int(number[el])
+        sum_res = sum_res + res
+        print(f'Current sum is {sum_res}')
+    print(f'Your final sum is {sum_res}')
+
+my_sum()
+
+
+
+# Задание №6
+a = input("Введите слово: ")
+
+def int_func(var_1):
+    return a.title()
+
+print(int_func(a))
+
+
+
+# Задание №7
+print(int_func(a))
+
+def int_func(var_1):
+    new_word = a.split(' ')
+    total = []
+    for el in new_word:
+        string_element = str(el)
+        big_letter = string_element[:1].upper()
+        word = big_letter + string_element[1:]
+        total.append(word)
+    return total
+
+print(int_func(a))
+
+------------------------------------- Это вариант 2
+# Можно ли 2 вариант считать тоже верным решением?
+
+a = input("Введите слово: ")
+
+def int_func(var_1):
+    return a.title().split()
+print(int_func(a))
