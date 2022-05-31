@@ -1,82 +1,77 @@
-# Задание номер 1
-name = input("Введите свое имя: ")
-password = input("Введите свой пароль: ")
-age = input("Введите свой возраст: ")
+# Задание №1
 
-print("Ваши данные для входа в аккаунт: имя - ", name, "," " пароль - ", password, "," " возраст - ", age)
+our_f = open('practice.txt', 'w', encoding='utf-8')
+line = input("Введите информацию: ")
 
+while True:
+    our_f.writelines(line)
+    line = input("Введите информацию: ")
+    if not line:
+        break
 
+our_f.close()
+our_f = open('practice.txt', 'r')
+content = our_f.readline()
+print(content)
+our_f.close()
 
+# Задание №2
+file = open("task2.txt", encoding="utf-8")
 
-# Задание номер 2
+lines = 0
+words = 0
 
-time = int(input("Вводите время в секундах: "))
+for line in file:
+    lines += 1
+    words += len(line.split())
 
-hours = time / 3600
-hours_second = hours * 60
+print(f"Колчество срок: {lines}")
+print(f"Колчество слов: {words}")
 
-minutes = time / 60
+file.close()
 
-seconds = time
+# Задание №3
+with open("task3.txt", 'r', encoding="utf-8") as file:
+    workers = []
+    summa = []
+    new_list = file.read().split("\n")
+    for i in new_list:
+        i = i.split()
+        if int(i[1]) < 20000:
+            workers.append(i[0])
+        summa.append(i[1])
+print(
+    f'Оклад меньше 20.000 {workers}, средний оклад {sum(map(int, summa)) / len(summa)}')
 
-print("Время в формате ч:м:с - ", hours, ":", minutes, ":", seconds)
+# Задание №4
+rus = {'One': 'Один', 'Two': 'Два', 'Three': 'Три', 'Four': 'Четыре'}
+new_file = []
+with open('task4.txt', 'r', encoding='utf-8') as file_obj:
+    for i in file_obj:
+        i = i.split(' ', 1)
+        new_file.append(rus[i[0]] + '  ' + i[1])
+    print(new_file)
 
+with open('file_4_new.txt', 'w', encoding='utf-8') as file_obj_2:
+    file_obj_2.writelines(new_file)
 
+# Задание №5
+with open('task5.txt', 'r', encoding='utf-8') as numb_file:
+    lines = numb_file.read().split()
+    x = [int(x) for x in lines]
+    for i in x:
+        res = sum(x)
 
+print(res)
 
-# Задание номер 3
-
-number = int(input("Введите число n: "))
-
-second_part = number + number
-third_part = number + number + number
-
-summy = number + second_part + third_part
-print(summy)
-
-
-
-# Задание номер 4
-
-number = int(input("Введите число положительное число: "))
-r = -1
-while number > 10:
-    d = number % 10
-    number //= 10
-    if d > r:
-        r = d
-print("Самая большая цифра в числе: ", r)
-
-
-# Задание номер 5
-
-money = int(input("Введите выручку фирмы: "))
-taxes = int(input("Введите издержки фирмы: "))
-
-if money != taxes:
-    summy = money - taxes
-    print("Финансовый результат - прибыль. Ее величина: ", summy)
-
-profitability = summy / money
-print("Рентабельность выручки = ", profitability)
-
-empoyee = int(input("Введите численность сотрудников фирмы: "))
-result = summy / empoyee
-
-print("Прибыль фирмы в расчете на одного сотрудника: ", result)
-
-
-
-# Задание номер 6
-
-a = int(input("Введите результат первого дня: "))
-b = int(input("Введите километраж: "))
-day = 1
-
-while a < b:
-    a = a + (a * 0.1)
-    day += 1
-print("на ", day, "-й день  спортсмен достиг результата — не менее ", b, "км")
-
+# Задание №6
+with open('task6.txt', 'r', encoding='utf-8') as obj_file:
+    lines = obj_file.read().splitlines()
+    dic = {}
+    for line in lines:
+        subject, lecture, practice, lab = line.split()
+        dic[subject] = int(lecture) + int(practice) + int(lab)
+    print(f'Общее количество часов по предмету - \n {dic}')
+print(dic)
 
 
