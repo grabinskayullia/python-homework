@@ -15,6 +15,9 @@ content = our_f.readline()
 print(content)
 our_f.close()
 
+
+
+
 # Задание №2
 file = open("task2.txt", encoding="utf-8")
 
@@ -30,6 +33,9 @@ print(f"Колчество слов: {words}")
 
 file.close()
 
+
+
+
 # Задание №3
 with open("task3.txt", 'r', encoding="utf-8") as file:
     workers = []
@@ -43,6 +49,9 @@ with open("task3.txt", 'r', encoding="utf-8") as file:
 print(
     f'Оклад меньше 20.000 {workers}, средний оклад {sum(map(int, summa)) / len(summa)}')
 
+
+
+
 # Задание №4
 rus = {'One': 'Один', 'Two': 'Два', 'Three': 'Три', 'Four': 'Четыре'}
 new_file = []
@@ -55,6 +64,9 @@ with open('task4.txt', 'r', encoding='utf-8') as file_obj:
 with open('file_4_new.txt', 'w', encoding='utf-8') as file_obj_2:
     file_obj_2.writelines(new_file)
 
+
+
+
 # Задание №5
 with open('task5.txt', 'r', encoding='utf-8') as numb_file:
     lines = numb_file.read().split()
@@ -63,6 +75,10 @@ with open('task5.txt', 'r', encoding='utf-8') as numb_file:
         res = sum(x)
 
 print(res)
+
+
+
+
 
 # Задание №6
 with open('task6.txt', 'r', encoding='utf-8') as obj_file:
@@ -73,5 +89,3 @@ with open('task6.txt', 'r', encoding='utf-8') as obj_file:
         dic[subject] = int(lecture) + int(practice) + int(lab)
     print(f'Общее количество часов по предмету - \n {dic}')
 print(dic)
-
-
