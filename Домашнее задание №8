@@ -1,0 +1,143 @@
+# Задание №1
+class Data:
+
+    def __init__(self, together):
+        self.together = str(together)
+
+    @classmethod
+    def get_number(cls, together):
+        new_time = []
+        for el in together.split():
+            if el != '-': new_time.append(el)
+        return int(new_time[0]), int(new_time[1]), int(new_time[2])
+
+
+    @staticmethod
+    def get_check(day, month, year):
+        if  1 <= day <= 31:
+            if 1 <= month <= 12:
+                if 2022 <= year >= 0:
+                    return f'Все верно!'
+                else:
+                    return f"Год введен не правильно!"
+            else:
+                return f"Месяць введен не правильно!"
+        else:
+            return f"День введен не правильно!"
+
+
+    def __str__(self):
+        return f'Текущее время: {Data.get_number(self.together)}'
+
+today = Data('11 - 1 - 2001')
+print(Data.get_check(11, 11, 2022))
+print(today.get_check(11, 13, 2011))
+print(Data.get_number('11 - 11 - 2011'))
+print(today.get_number('11 - 11 - 2020'))
+print(Data.get_check(1, 11, 2000))
+
+
+
+
+# Задание №2
+class OwnError(Exception):
+    def __init__(self, txt):
+        self.txt = txt
+
+inp_data = input("Введите первое число: ")
+inp_second = input("Введите второе число: ")
+
+try:
+    inp_data = int(inp_data)
+    inp_second = int(inp_second)
+
+    res = inp_data / inp_second
+except ZeroDivisionError:
+    print("На ноль делить нельзя")
+else:
+    print(f"Все хорошо. Результат - {res}")
+finally:
+    print("Программа завершена")
+
+
+
+# Задание №3
+class NotNumber(ValueError):
+    pass
+
+my_list = []
+while True:
+    try:
+        value = input('Введите число в список:')
+        if value == 'stop':
+            break
+        if not value.isdigit():
+            raise NotNumber(value)
+        my_list.append(int(value))
+    except NotNumber as ex:
+        print('Не число!', ex)
+print(my_list)
+
+
+
+# Задание № 4, 5, 6
+
+class Sklad:
+    def __init__(self, name, price, quantity, number_of_lists, *args):
+        self.name = name
+        self.price = price
+        self.quantity = quantity
+        self.numb = number_of_lists
+        self.full_store = []
+        self.store = []
+        self.my_unit = {'Модель устройства': self.name, 'Цена за ед': self.price, 'Количество': self.quantity}
+
+    def __str__(self):
+        return f'Название - {self.name}, цена - {self.price}, количество - {self.quantity}'
+
+
+    def reception(self):
+            try:
+                unit_name = input("Введите название: ")
+                unit_price = int(input("Введите цену: "))
+                unit_quantity = int(input("Введите количество: "))
+                unique = {'Модель устройства': unit_name, 'Цена за ед': unit_price,
+                      'Количество': unit_quantity}
+                self.my_unit.update(unique)
+                self.store.append(self.my_unit)
+                print(f'Текущий список -\n {self.store}')
+            except:
+                return f'Ошибка ввода данных'
+
+            print(f'Для выхода - Q, продолжение - Enter')
+            q = input(f'---> ')
+            if q == 'Q' or q == 'q':
+                self.full_store.append(self.store)
+                print(f'Весь склад -\n {self.full_store}')
+                return f'Выход'
+            else:
+                return Sklad.reception(self)
+
+class Printer(Sklad):
+    def to_print(self):
+        return f'to print smth {self.numb} times'
+
+
+class Scanner(Sklad):
+    def to_scan(self):
+        return f'to scan smth {self.numb} times'
+
+
+class Copier(Sklad):
+    def to_copier(self):
+        return f'to copier smth  {self.numb} times'
+
+unit_1 = Printer('hp', 2000, 5, 10)
+unit_2 = Scanner('Canon', 1200, 5, 10)
+unit_3 = Copier('Xerox', 1500, 1, 15)
+
+print(unit_1.reception())
+print(unit_2.reception())
+print(unit_3.reception())
+print(unit_1.to_print())
+print(unit_3.to_copier())
